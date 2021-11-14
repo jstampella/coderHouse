@@ -1,0 +1,19 @@
+.principal {
+  text-align: center;
+}
+.bloque {
+  text-align: center;
+  margin: 12px;
+  border: 1px solid #b25e5edd;
+  display: inline-block;
+  padding: 15px;
+  border-radius: 12px;
+}
+
+.contenido {
+  margin: 15px;
+  max-width: 800px;
+  padding: 15px;
+  border: 1px solid #b25e5edd;
+  border-radius: 12px;
+}
