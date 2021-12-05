@@ -1,0 +1,27 @@
+{
+    "arrayProductos":[{
+        "codigo":"98585",
+        "marca" : "Puma",
+        "modelo" : "sandalias",
+        "talle" : "38",
+        "color" : "negro",
+        "precio" : 5800
+        },
+        {
+            "codigo":"9054",
+            "marca" : "Adidas",
+            "modelo" : "Short",
+            "talle" : "44",
+            "color" : "Blanco",
+            "precio" : 2800
+            },
+            {
+                "codigo":"6587",
+                "marca" : "Nike",
+                "modelo" : "Pantalon",
+                "talle" : "44",
+                "color" : "Azul",
+                "precio" : 6200
+                }
+    ]
+}
