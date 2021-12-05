@@ -43,11 +43,11 @@ input_id.onkeyup = () => {
     btnBuscar.click();
   }
 };
-btnNuevo.onclick = () => $(".mdl").css("display", "flex");
+btnNuevo.onclick = () => $(".mdl").fadeIn("slow").css("display", "flex");
 
 //Funciones
 function cerrarModal() {
-  $(".mdl").css("display", "none");
+  $(".mdl").fadeOut("slow");
 }
 
 //Sync el storage de productosw
