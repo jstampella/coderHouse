@@ -46,31 +46,21 @@ input_id.onkeyup = () => {
 btnNuevo.onclick = () => $(".mdl").fadeIn("slow").css("display", "flex");
 
 //Funciones
-$(document).ready(function () {
-  listarProductos(true);
-});
-
-//mensaje modal
-function mensajeModal(mensaje = "", type = true) {
-  $(".mensajeModal").html(mensaje);
-  if (type) $(".mensajeModal").css("background-color", "rgb(93 255 128 / 60%)");
-  else $(".mensajeModal").css("background-color", "rgb(255 93 93 / 60%)");
-  $(".mensajeModal").fadeIn("slow").css("display", "flex");
-  $(".mensajeModal").fadeOut(4500);
-}
-
-//cerra modal
 function cerrarModal() {
   $(".mdl").fadeOut("slow");
 }
 
 //Sync el storage de productosw
-async function sync() {
-  let result = [];
-  await $.getJSON("./productos.json", function (res, req) {
-    result = res.arrayProductos;
-  });
-  return result;
+function sync(pull = true) {
+  if (pull) {
+    if (
+      localStorage.getItem("productos") !== undefined &&
+      localStorage.getItem("productos")
+    )
+      productos = JSON.parse(localStorage.getItem("productos"));
+  } else {
+    localStorage.setItem("productos", JSON.stringify(productos));
+  }
 }
 
 //Funcion para ordenar los productos
@@ -88,36 +78,21 @@ function ordenar(tipo) {
 }
 
 //Funcion para listar productos en la tabla
-function listarProductos(er = false) {
-  sync().then((res) => {
-    productos = res;
-    if (
-      localStorage.getItem("productos") !== undefined &&
-      localStorage.getItem("productos")
-    ) {
-      let prod_2 = JSON.parse(localStorage.getItem("productos"));
-      Array.prototype.push.apply(productos, prod_2);
+function listarProductos() {
+  sync(true);
+  if (prompt("Desea ordenar los productos alfabeticamente? (S)/(N)") == "S")
+    ordenar("marca");
+  let mensaje = "<tr>";
+  let item = 1;
+  productos.forEach((element) => {
+    mensaje += `<th scope='row'>${item}</th>`;
+    for (const property in element) {
+      mensaje += `<td>${element[property]}</td>`;
     }
-
-    console.log(productos);
-    if (er) ordenar("marca");
-    else if (
-      prompt("Desea ordenar los productos alfabeticamente? (S)/(N)") == "S"
-    )
-      ordenar("marca");
-    let mensaje = "<tr>";
-    let item = 1;
-    productos.forEach((element) => {
-      mensaje += `<th scope='row'>${item}</th>`;
-      for (const property in element) {
-        if (property == "precio") mensaje += `<td>$${element[property]}</td>`;
-        else mensaje += `<td>${element[property]}</td>`;
-      }
-      mensaje += "</tr>";
-      item++;
-    });
-    contenedor.innerHTML = mensaje;
+    mensaje += "</tr>";
+    item++;
   });
+  contenedor.innerHTML = mensaje;
 }
 
 //funcion para buscar un producto por el codigo
@@ -127,6 +102,7 @@ function buscarProducto() {
   );
   console.log(codigo);
   let producto_buscado = null;
+  sync(true);
   productos.forEach((element) => {
     if (element["codigo"] == codigo) producto_buscado = element;
   });
@@ -134,13 +110,11 @@ function buscarProducto() {
   if (producto_buscado) {
     mensaje += `<th scope='row'>1</th>`;
     for (const property in producto_buscado) {
-      if (property == "precio")
-        mensaje += `<td>$${producto_buscado[property]}</td>`;
-      else mensaje += `<td>${producto_buscado[property]}</td>`;
+      mensaje += `<td>${producto_buscado[property]}</td>`;
     }
     mensaje += "</tr>";
     contenedor.innerHTML = mensaje;
-  } else mensajeModal("Producto no encontrado", false);
+  } else alert("Producto no encontrado");
 }
 
 //Agregar un nuevo producto
@@ -150,19 +124,16 @@ function nuevoProducto() {
 
   for (var i = 0, element; (element = elements[i++]); ) {
     if (element.value === "") {
-      mensajeModal("El campo " + element.name + " esta vacio ", false);
+      alert("El campo " + element.name + " esta vacio ");
       return;
     } else producto[element.name] = element.value;
   }
-  let prod_temp = [];
-  if (
-    localStorage.getItem("productos") !== undefined &&
-    localStorage.getItem("productos")
-  )
-    prod_temp = JSON.parse(localStorage.getItem("productos"));
-  prod_temp.push(producto);
-  localStorage.setItem("productos", JSON.stringify(prod_temp));
+
+  sync(true);
+  productos.push(producto);
+  sync(false);
+  console.log(productos);
+  console.log(typeof productos);
   cerrarModal();
-  mensajeModal("Se guardo correctamente");
-  listarProductos(true);
+  alert("Se guardo correctamente");
 }
