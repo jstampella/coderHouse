@@ -73,6 +73,18 @@ async function sync() {
   return result;
 }
 
+function ajaxJson() {
+  let URL = "./productos.json";
+  $.ajax({
+    type: "GET",
+    url: URL,
+    dataType: "json",
+    success: function (response) {
+      console.log(response);
+    },
+  });
+}
+
 //Funcion para ordenar los productos
 function ordenar(tipo) {
   productos.sort(function (a, b) {
