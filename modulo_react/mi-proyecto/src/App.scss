@@ -1,0 +1,26 @@
+.app {
+  &-header {
+    background-color: #2f2f2f;
+    margin-top: 15px !important;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    &__logo {
+      text-align: center;
+      img {
+        height: 60px;
+      }
+    }
+  }
+  .right {
+    justify-content: flex-end;
+  }
+  &-nav {
+    display: flex;
+    align-content: center;
+    flex-wrap: wrap;
+
+    .nav-link {
+      color: aqua;
+    }
+  }
+}
