@@ -1,8 +1,9 @@
 import React from "react";
 import { Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { Container, Row, Col } from "react-bootstrap";
+import { Col } from "react-bootstrap";
 import logoProyecto from "../assets/img/logo.png";
+import CardWidget from "./CardWidget";
 
 export default function NavBar() {
   return (
@@ -34,6 +35,9 @@ export default function NavBar() {
             <Nav.Link href="/Login">Login</Nav.Link>
           </Nav.Item>
         </Nav>
+      </Col>
+      <Col xs lg="1" className="app-nav center">
+        <CardWidget item="0" />
       </Col>
     </>
   );

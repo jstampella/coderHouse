@@ -14,13 +14,34 @@
   .right {
     justify-content: flex-end;
   }
+  .center {
+    justify-content: center;
+  }
   &-nav {
     display: flex;
     align-content: center;
     flex-wrap: wrap;
 
     .nav-link {
-      color: aqua;
+      color: #00ffe7;
+    }
+    .car {
+      position: relative;
+      svg {
+        vertical-align: unset;
+        color: #00ffe7;
+        font-size: 50px;
+      }
+      &__item {
+        position: absolute;
+        color: #2f2f2f;
+        top: 8px;
+        left: 15px;
+        font-size: 19px;
+        border-radius: 16px;
+        padding: 0 8px;
+        font-weight: bold;
+      }
     }
   }
 }
