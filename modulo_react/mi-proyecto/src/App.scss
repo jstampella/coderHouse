@@ -44,4 +44,50 @@
       }
     }
   }
+  .itemList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    &__item {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      background: #edeee9;
+      border: 1px solid #d0c126;
+      border-radius: 5px;
+      margin: 15px;
+      max-height: 318px;
+      max-width: 300px;
+    }
+    &__cod {
+      font-weight: 700;
+      color: #707070;
+    }
+    &__titulo {
+      text-align: center;
+      font-size: 26px;
+      color: black;
+      font-weight: bold;
+    }
+    &__img {
+      flex: 1;
+      overflow: hidden;
+      width: 100%;
+      text-align: center;
+      img {
+        width: 100%;
+        height: auto;
+      }
+
+      @supports (object-fit: cover) {
+        img {
+          height: 100%;
+          object-fit: cover;
+          object-position: center center;
+        }
+      }
+    }
+  }
 }

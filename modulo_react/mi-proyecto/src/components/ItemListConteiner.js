@@ -1,5 +1,14 @@
 import React from "react";
+import ItemCount from "./ItemCount";
+import ItemList from "./Header/ItemList";
 
 export default function ItemListConteiner() {
-  return <div>Listado de Articulos</div>;
+  const CargarItem = (a, b) => {
+    alert(`Se agrego al carrito ${b} - ${a} unidades`);
+  };
+  return (
+    <>
+      <ItemList />
+    </>
+  );
 }

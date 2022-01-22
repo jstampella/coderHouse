@@ -2,8 +2,8 @@ import React from "react";
 import { Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { Col } from "react-bootstrap";
-import logoProyecto from "../assets/img/logo.png";
-import CardWidget from "./CardWidget";
+import logoProyecto from "../../assets/img/logo.png";
+import CardWidget from "../CardWidget";
 
 export default function NavBar() {
   return (
