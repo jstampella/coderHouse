@@ -1,0 +1,21 @@
+@import "../../scss/index.scss";
+
+.card-widget {
+  position: relative;
+  font-size: $defaultfontSize;
+  display: inline-block;
+  border-radius: 5px;
+  padding: 5px 10px;
+  &__item {
+    position: absolute;
+    color: $primary-color-light;
+    font-weight: bold;
+    font-size: 25px;
+    left: 0%;
+    top: 2px;
+  }
+  &__icon {
+    font-size: 42px;
+    color: $primary-color !important;
+  }
+}

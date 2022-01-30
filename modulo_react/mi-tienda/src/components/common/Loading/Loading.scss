@@ -1,0 +1,21 @@
+@import "../../../scss/index.scss";
+
+.loading {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+  &--texto {
+    font-size: $defaultfontSize;
+    font-weight: bold;
+  }
+  &--icon {
+    font-size: 20px;
+    text-align: center;
+  }
+  &--center {
+    text-align: center;
+  }
+}

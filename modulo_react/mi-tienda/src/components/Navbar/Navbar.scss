@@ -1,0 +1,71 @@
+@import "../../scss/index.scss";
+.navbar {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  color: $primary-color-light;
+  background-color: $menu-color;
+  .ant-row {
+    justify-content: center;
+  }
+  &__logo {
+    height: 50px;
+    text-align: center;
+    img {
+      height: 100%;
+    }
+  }
+
+  &__menu {
+    .ant-menu {
+      justify-content: center;
+    }
+    ul {
+      background-color: $menu-color !important;
+      color: $primary-color-light !important;
+    }
+    ul li:hover {
+      //background-color: $menu-color-light !important;
+      span,
+      a {
+        color: $primary-color !important;
+      }
+    }
+    li a {
+      color: $primary-color-light !important;
+    }
+    .ant-menu-horizontal {
+      border: none;
+    }
+  }
+
+  &__carrito {
+    text-align: center;
+  }
+  &__login {
+    text-align: center;
+    display: flex !important;
+    align-items: center;
+    justify-content: flex-end;
+    font-size: 16px;
+    font-weight: 500;
+    a {
+      color: $primary-color-light !important;
+      margin-right: 15px;
+      padding-bottom: 6px;
+
+      &:hover {
+        color: $primary-color !important;
+      }
+    }
+  }
+}
+.ant-menu-submenu-popup > .ant-menu,
+.ant-menu-submenu-popup {
+  background-color: $menu-color !important;
+  a {
+    color: $primary-color-light !important;
+    &:hover {
+      color: $primary-color !important;
+    }
+  }
+}

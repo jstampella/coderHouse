@@ -1,0 +1,36 @@
+@import "../../../scss/index.scss";
+
+.item-detail {
+  display: flex;
+  flex-direction: column !important;
+  align-content: space-between;
+  flex-wrap: wrap !important;
+  align-items: center;
+  max-width: 600px;
+  margin: 0 auto;
+  border-radius: 15px;
+  overflow: hidden;
+  &--imagen {
+    width: 100%;
+    flex: 1;
+    img {
+      width: 100%;
+      height: auto;
+    }
+
+    @supports (object-fit: cover) {
+      img {
+        height: 100%;
+        object-fit: cover;
+        object-position: center center;
+      }
+    }
+  }
+  &--btn {
+    width: 100%;
+    button {
+      flex: 1;
+      margin: 10px;
+    }
+  }
+}
