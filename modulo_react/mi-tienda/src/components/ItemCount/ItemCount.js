@@ -27,7 +27,7 @@ export default function ItemCount({ id, min, max, onAdd }) {
           variant="countIncrement--count"
         />
       </div>
-      <button className="itemCount__btn" onClick={() => onAdd(counter, id)}>
+      <button className="itemCount__btn" onClick={() => onAdd(counter)}>
         Agregar al carrito
       </button>
     </Row>

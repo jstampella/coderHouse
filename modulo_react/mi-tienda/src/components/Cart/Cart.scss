@@ -1,0 +1,31 @@
+@import "../../scss/index.scss";
+
+.cart {
+  margin-top: 15px;
+
+  &-title {
+    font-size: 16px;
+    font-weight: bold;
+    justify-content: center;
+    background-color: $menu-color;
+    h2 {
+      padding-top: 3px;
+      color: $primary-color;
+    }
+  }
+  .ant-table-cell {
+    text-align: center;
+  }
+  td {
+    img {
+      height: 100px;
+    }
+  }
+}
+.change-count {
+  &--text {
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px;
+  }
+}

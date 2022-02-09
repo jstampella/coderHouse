@@ -28,7 +28,7 @@ const listado = [
       "https://d2r9epyceweg5n.cloudfront.net/stores/001/160/124/products/ef-redes-891-95d4164fc4b3df391a16219707509031-1024-1024.jpg",
   },
   {
-    id: 76,
+    id: 79,
     name: "jeans negro",
     stock: 10,
     cost: 4800,
