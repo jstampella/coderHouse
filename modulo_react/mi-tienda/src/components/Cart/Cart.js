@@ -1,17 +1,27 @@
-import { React, useContext, useEffect } from "react";
+import { React, useContext, useEffect, useState } from "react";
 import { CartContext } from "../CartContext";
 import { Row, Col, Button, Table } from "antd";
+
+import DisplayCount from "../DisplayCount";
 
 import "./Cart.scss";
 
 export default function Cart() {
   const contextCart = useContext(CartContext);
-  const itemList = contextCart.cartList;
+  //const itemList = contextCart.cartList;
+  const [itemList, setItemList] = useState([]);
 
-  console.log(itemList);
-  itemList.map((item, index) => (item.key = index + 1));
+  useEffect(() => {
+    setItemList(contextCart.cartList);
+  }, [contextCart]);
+
   const columns = [
-    { title: "#", dataIndex: "key", key: "key" },
+    {
+      title: "#",
+      dataIndex: "key",
+      key: "key",
+      render: (text, record, index) => index + 1,
+    },
     { title: "cod", dataIndex: "id", key: "id" },
     {
       title: "imagen",
@@ -28,7 +38,7 @@ export default function Cart() {
       title: "cantidad",
       dataIndex: "count",
       key: "count",
-      render: (text, record) => displayCount(text, record.id, contextCart),
+      render: (text, record) => <DisplayCount id={record.id} text={text} />,
     },
     {
       title: "Precio",
@@ -54,20 +64,9 @@ export default function Cart() {
         <Row className="cart-title">
           <h2>Carrito de Compras</h2>
         </Row>
-        <Table columns={columns} dataSource={itemList} />
+        <Table columns={columns} dataSource={itemList} rowKey="id" />
       </Col>
       <Col md={4}></Col>
     </Row>
-  );
-  //   return itemList.map((item) => <CartItem key={item.id} item={item} />);
-}
-
-function displayCount(text, id, contextCart) {
-  return (
-    <div className="change-count">
-      <Button onClick={() => contextCart.changeCount(id, -1)}>-</Button>
-      <span className="change-count--text">{text}</span>
-      <Button onClick={() => contextCart.changeCount(id, +1)}>+</Button>
-    </div>
   );
 }

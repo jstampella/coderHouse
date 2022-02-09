@@ -16,7 +16,6 @@ export default function ItemDetail() {
   const contextCart = useContext(CartContext);
 
   const onAdd = (count) => {
-    alert(`Se agrego ${count} unidades del producto ${item.name}`);
     setCount(count);
     contextCart.addToCart(item, count);
   };

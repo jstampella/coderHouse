@@ -22,9 +22,14 @@ const CartContextProvider = ({ children }) => {
   const changeCount = (id, setVal) => {
     let found = cartList.find((product) => product.id === id);
     let count = found.count + setVal;
-    if (found.stock < count) found.count = found.stock;
-    else if (count === 0) found.count = 1;
-    else found.count = count;
+
+    if (count > 0 && count <= found.stock)
+      return setCartList([
+        ...cartList.map((prod) => {
+          if (prod.id === id) prod.count = count;
+          return prod;
+        }),
+      ]);
   };
 
   return (
