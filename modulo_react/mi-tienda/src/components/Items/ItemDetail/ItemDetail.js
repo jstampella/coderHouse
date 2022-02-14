@@ -2,10 +2,10 @@ import React, { useState, useEffect, useContext } from "react";
 import { Row, Col, Button } from "antd";
 import { Link } from "react-router-dom";
 import ItemCount from "../../ItemCount";
-import { detailItemsApi } from "../../../api/itemsApi";
 import Loading from "../../common/Loading/Loading";
 import { useParams } from "react-router-dom";
 import { CartContext } from "../../CartContext";
+import { firestoreFetchOne } from "../../../utils/firebase/firestoreFetch";
 
 import "./ItemDetail.scss";
 
@@ -21,9 +21,9 @@ export default function ItemDetail() {
   };
 
   useEffect(() => {
-    detailItemsApi(id).then((response) => {
-      setItem(response[0]);
-    });
+    firestoreFetchOne(id)
+      .then((result) => setItem(result))
+      .catch((err) => console.log(err));
   }, [id]);
 
   if (item.length === 0) {

@@ -25,15 +25,19 @@ export default function Navbar() {
               </Menu.Item>
               <SubMenu title="Productos" key={2}>
                 <Menu.Item key={3}>
-                  <NavLink to={"/productos/category/camisa"}>Remeras</NavLink>
+                  <NavLink to={"/productos/category/xF40gJP7yhYIRkopNgOj"}>
+                    Camisas
+                  </NavLink>
                 </Menu.Item>
                 <Menu.Item key={4}>
-                  <NavLink to={"/productos/category/pantalon"}>
+                  <NavLink to={"/productos/category/rQxBz9uvMguW6hfgKnW1"}>
                     Pantalones
                   </NavLink>
                 </Menu.Item>
                 <Menu.Item key={5}>
-                  <NavLink to={"/productos/category/short"}>Shorts</NavLink>
+                  <NavLink to={"/productos/category/eCKrnljWtip32DBNjfKT"}>
+                    Shorts
+                  </NavLink>
                 </Menu.Item>
                 <Menu.Item key={8}>
                   <NavLink to={"/productos"}>Todos</NavLink>

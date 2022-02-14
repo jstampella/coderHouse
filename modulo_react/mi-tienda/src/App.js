@@ -10,7 +10,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Col, Row } from "antd";
 import CartContextProvider from "./components/CartContext";
 import "./App.scss";
-import "antd/dist/antd.min.css";
+import "antd/dist/antd.css";
 
 function App() {
   return (
