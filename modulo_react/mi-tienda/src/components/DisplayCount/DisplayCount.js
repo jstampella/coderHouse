@@ -6,7 +6,6 @@ import { CartContext } from "../CartContext";
 import "./DisplayCount.scss";
 
 export default function DisplayCount({ id, text }) {
-  console.log(`${id} - ${text}`);
   const contextCart = useContext(CartContext);
   return (
     <div className="display-count">

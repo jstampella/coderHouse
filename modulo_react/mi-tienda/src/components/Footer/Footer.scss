@@ -1,0 +1,18 @@
+@import "../../scss/index.scss";
+
+.footer {
+  padding: 10px;
+  background-color: $footer-color;
+  color: $primary-color-light;
+  border-top: 2px dashed $primary-color;
+
+  &__center {
+    display: flex !important;
+  }
+  &--copy {
+    font-weight: 700;
+  }
+  &--autor {
+    color: $primary-color;
+  }
+}

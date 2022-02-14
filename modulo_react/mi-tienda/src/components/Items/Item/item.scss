@@ -27,11 +27,22 @@
       }
     }
   }
+  &--price {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  &--title {
+    font-size: 18px;
+    font-weight: bold;
+  }
   &--btn {
     width: 100%;
     button {
       flex: 1;
       margin: 10px;
+      background-color: $menu-color;
+      color: $primary-color-light;
+      border-color: $primary-color-light;
     }
   }
 }

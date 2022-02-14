@@ -13,7 +13,7 @@ export default function Navbar() {
       <Col md={4} sm={0}></Col>
       <Col md={16} sm={24}>
         <Row>
-          <Col md={4} className="navbar__logo">
+          <Col md={5} className="navbar__logo">
             <NavLink to={"/"}>
               <img src={logoProyecto} alt="WebPersonal" />
             </NavLink>
@@ -47,12 +47,12 @@ export default function Navbar() {
               </Menu.Item>
             </Menu>
           </Col>
-          <Col md={4} className="navbar__login">
+          <Col md={3} className="navbar__login">
             <NavLink to={"/login"}>Login</NavLink>
           </Col>
           <Col md={2} className="navbar__carrito">
             <NavLink to={"/cart"}>
-              <CardWidget item={3} />
+              <CardWidget />
             </NavLink>
           </Col>
         </Row>

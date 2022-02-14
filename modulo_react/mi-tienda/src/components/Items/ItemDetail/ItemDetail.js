@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Row, Button } from "antd";
+import { Row, Col, Button } from "antd";
 import { Link } from "react-router-dom";
 import ItemCount from "../../ItemCount";
 import { detailItemsApi } from "../../../api/itemsApi";
@@ -30,21 +30,35 @@ export default function ItemDetail() {
     return <Loading title="Cargando detalle" />;
   }
   return (
-    <Row className="item-detail">
-      <Row className="item-detail--title">{item.name}</Row>
-      <Row className="item-detail--imagen">
-        <img src={item.image} alt={item.name} />
-      </Row>
-      <Row className="item-detail--cod">Cod:{item.cod}</Row>
-      <Row className="item-detail--price">${item.cost}</Row>
-      <Row className="item-detail--stock">Stock:{item.stock}</Row>
-      {count === 0 ? (
-        <ItemCount id={item.id} min={1} max={item.stock} onAdd={onAdd} />
-      ) : (
-        <Button>
-          <Link to={`/cart`}>Ver carrito</Link>
-        </Button>
-      )}
-    </Row>
+    <>
+      <Col md={4}></Col>
+      <Col md={16} className="item-detail">
+        <Row className="item-detail--title">{item.name}</Row>
+        <Row className="item-detail__content">
+          <Row className="item-detail__content--imagen">
+            <img src={item.image} alt={item.name} />
+          </Row>
+          <Row className="item-detail__content--extra">
+            <Row className="item-detail__content--cod">Cod: {item.id}</Row>
+            <Row className="item-detail__content--price">
+              Precio: ${item.cost}
+            </Row>
+            <Row className="item-detail__content--stock">
+              Stock disponible: {item.stock}
+            </Row>
+            {count === 0 ? (
+              <ItemCount id={item.id} min={1} max={item.stock} onAdd={onAdd} />
+            ) : (
+              <Row className="item-detail__content--btn">
+                <Button>
+                  <Link to={`/cart`}>Ver carrito</Link>
+                </Button>
+              </Row>
+            )}
+          </Row>
+        </Row>
+      </Col>
+      <Col md={4}></Col>
+    </>
   );
 }

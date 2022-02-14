@@ -1,4 +1,21 @@
 .app {
+  height: 100%;
+  display: grid;
+  grid-auto-rows: min-content auto max-content;
+  grid-template-areas: "navbar" "contenido" "footer";
+  .navbar {
+    grid-area: navbar;
+  }
+  .contenido {
+    display: flex;
+    justify-content: center;
+    grid-area: contenido;
+    overflow: auto;
+    flex-wrap: wrap;
+  }
+  .footer {
+    grid-area: footer;
+  }
   &-header {
     background-color: #2f2f2f;
     margin-top: 15px !important;

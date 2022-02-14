@@ -1,9 +1,28 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 
 export const CartContext = createContext();
 
+const getLocalStorage = (key, initialValue) => {
+  const value = window.localStorage.getItem(key);
+  return value ? JSON.parse(value) : initialValue;
+};
+
+const setLocalStorage = (key, value) => {
+  window.localStorage.setItem(key, JSON.stringify(value));
+};
+
 const CartContextProvider = ({ children }) => {
-  const [cartList, setCartList] = useState([]);
+  const [cartList, setCartList] = useState(getLocalStorage("cartList", []));
+
+  useEffect(() => {
+    setLocalStorage("cartList", cartList);
+  }, [cartList]);
+
+  const getCount = () => {
+    let count = 0;
+    cartList.map((prod) => (count += prod.count));
+    return count;
+  };
 
   const addToCart = (item, count) => {
     item.count = count;
@@ -13,6 +32,10 @@ const CartContextProvider = ({ children }) => {
     } else {
       found.count += count;
     }
+  };
+
+  const removeAll = () => {
+    setCartList([]);
   };
 
   const removeToCart = (id) => {
@@ -34,7 +57,14 @@ const CartContextProvider = ({ children }) => {
 
   return (
     <CartContext.Provider
-      value={{ cartList, addToCart, removeToCart, changeCount }}
+      value={{
+        cartList,
+        addToCart,
+        removeToCart,
+        changeCount,
+        getCount,
+        removeAll,
+      }}
     >
       {children}
     </CartContext.Provider>

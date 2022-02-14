@@ -5,7 +5,6 @@ export default function Home() {
   return (
     <>
       <ItemList url="producto/detalle" />
-      <div>Home</div>
     </>
   );
 }

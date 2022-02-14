@@ -17,5 +17,8 @@
   &__icon {
     font-size: 42px;
     color: $primary-color !important;
+    &:hover {
+      color: $primary-color-light !important;
+    }
   }
 }
