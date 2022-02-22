@@ -6,6 +6,14 @@
   .navbar {
     grid-area: navbar;
   }
+  .disabled {
+    background-color: #707070;
+    color: #edeee9;
+    &:hover {
+      background-color: #707070;
+      cursor: inherit;
+    }
+  }
   .contenido {
     display: flex;
     justify-content: center;

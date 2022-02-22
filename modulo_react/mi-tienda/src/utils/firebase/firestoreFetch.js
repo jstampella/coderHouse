@@ -1,11 +1,12 @@
 import {
   query,
-  orderBy,
   where,
   collection,
   getDocs,
+  updateDoc,
+  increment,
 } from "@firebase/firestore";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 import db from "./firebaseConfig";
 
 export const firestoreFetch = async (idCategory) => {
@@ -39,4 +40,18 @@ export const firestoreFetchOne = async (idItem) => {
     // doc.data() will be undefined in this case
     console.log("No such document!");
   }
+};
+
+export const updateStock = async (cartList) => {
+  await cartList.forEach(async (item) => {
+    const itemRef = doc(db, "products", item.id);
+    await updateDoc(itemRef, { stock: increment(-item.count) });
+  });
+  return "update";
+};
+
+export const createOrderF = async (order) => {
+  const newOrdr = doc(collection(db, "orders"));
+  await setDoc(newOrdr, order);
+  return newOrdr;
 };

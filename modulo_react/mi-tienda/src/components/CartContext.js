@@ -24,6 +24,12 @@ const CartContextProvider = ({ children }) => {
     return count;
   };
 
+  const getTotal = () => {
+    let priceT = 0;
+    cartList.map((prop) => (priceT += prop.count * prop.cost));
+    return priceT;
+  };
+
   const addToCart = (item, count) => {
     item.count = count;
     let found = cartList.find((product) => product.id === item.id);
@@ -64,6 +70,7 @@ const CartContextProvider = ({ children }) => {
         changeCount,
         getCount,
         removeAll,
+        getTotal,
       }}
     >
       {children}
