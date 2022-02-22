@@ -1,10 +1,20 @@
 import { React, useContext, useEffect, useState } from "react";
 import { CartContext } from "../CartContext";
-import { Row, Col, Button, Table, Modal as ModalAntd, Spin } from "antd";
+import {
+  Row,
+  Col,
+  Button,
+  Table,
+  Modal as ModalAntd,
+  Spin,
+  Form,
+  Input,
+} from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import { createOrderF, updateStock } from "../../utils/firebase/firestoreFetch";
 import DisplayCount from "../DisplayCount";
+import Modal from "../Modal/Modal";
 
 import "./Cart.scss";
 import { serverTimestamp } from "firebase/firestore";
@@ -17,6 +27,12 @@ export default function Cart() {
   const contextCart = useContext(CartContext);
   const [itemList, setItemList] = useState([]);
   const [order, setOrder] = useState(null);
+  const [isVisibleModal, setIsVisibleModal] = useState(false);
+  const [isInfo, setIsInfo] = useState({
+    name: "",
+    phone: "",
+    email: "",
+  });
 
   useEffect(() => {
     setItemList(contextCart.cartList);
@@ -26,22 +42,20 @@ export default function Cart() {
     if (order) finishOrder();
   }, [order]);
 
+  const cargarInfo = () => {
+    setIsVisibleModal(true);
+  };
   const createOrder = () => {
+    setIsVisibleModal(false);
     info({
       title: "Generando orden",
       content: <Spin />,
       okButtonProps: { style: { display: "none" } },
       cancelButtonProps: { style: { display: "none" } },
     });
+
     setOrder({
-      bayer: {
-        name: "jonathan",
-        phone: "3435182327",
-        email: "jona.stampella@gmail.com",
-      },
-    });
-    setOrder((order) => ({
-      ...order,
+      bayer: isInfo,
       item: contextCart.cartList.map((item) => ({
         id: item.id,
         price: item.cost,
@@ -50,7 +64,7 @@ export default function Cart() {
       })),
       data: serverTimestamp(),
       total: contextCart.getTotal(),
-    }));
+    });
   };
 
   const finishOrder = () => {
@@ -156,7 +170,7 @@ export default function Cart() {
           {itemList.length !== 0 ? (
             <Col>
               <Table columns={columns} dataSource={itemList} rowKey="id" />
-              <CartMont itemList={itemList} createOrder={createOrder} />
+              <CartMont itemList={itemList} createOrder={cargarInfo} />
             </Col>
           ) : (
             <CartEmpty />
@@ -164,6 +178,13 @@ export default function Cart() {
         </Col>
         <Col md={4}></Col>
       </Row>
+      <InfoOrder
+        isVisibleModal={isVisibleModal}
+        setIsVisibleModal={setIsVisibleModal}
+        info={isInfo}
+        setInfo={setIsInfo}
+        nextOrder={createOrder}
+      />
     </>
   );
 }
@@ -194,5 +215,58 @@ function CartEmpty() {
         </Button>
       </Row>
     </Row>
+  );
+}
+
+function InfoOrder({
+  isVisibleModal,
+  setIsVisibleModal,
+  info,
+  setInfo,
+  nextOrder,
+}) {
+  return (
+    <Modal
+      title="Datos Personales"
+      isVisible={isVisibleModal}
+      setIsVisible={setIsVisibleModal}
+    >
+      {
+        <Form className="form-edit" onFinish={nextOrder}>
+          <Form.Item>
+            <Input
+              placeholder="Nombre"
+              value={info.name}
+              onChange={(e) => {
+                setInfo({ ...info, name: e.target.value });
+              }}
+            />
+          </Form.Item>
+          <Form.Item>
+            <Input
+              placeholder="Telefono"
+              value={info.phone}
+              onChange={(e) => {
+                setInfo({ ...info, phone: e.target.value });
+              }}
+            />
+          </Form.Item>
+          <Form.Item>
+            <Input
+              placeholder="email"
+              value={info.email}
+              onChange={(e) => {
+                setInfo({ ...info, email: e.target.value });
+              }}
+            />
+          </Form.Item>
+          <Form.Item>
+            <Button type="primary" htmlType="submit" className="btn-submit">
+              Finalizar compra
+            </Button>
+          </Form.Item>
+        </Form>
+      }
+    </Modal>
   );
 }
