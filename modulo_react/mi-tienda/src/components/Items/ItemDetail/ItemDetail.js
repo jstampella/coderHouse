@@ -26,6 +26,12 @@ export default function ItemDetail() {
       .catch((err) => console.log(err));
   }, [id]);
 
+  useEffect(() => {
+    let item = contextCart.getProduct(id);
+    console.log(item);
+    if (item) setCount(item.count);
+  }, [contextCart, id]);
+
   if (item.length === 0) {
     return <Loading title="Cargando detalle" />;
   }
@@ -47,13 +53,24 @@ export default function ItemDetail() {
               Stock disponible: {item.stock}
             </Row>
             {count === 0 ? (
-              <ItemCount id={item.id} min={1} max={item.stock} onAdd={onAdd} />
+              <ItemCount
+                id={item.id}
+                min={1}
+                init={count}
+                max={item.stock}
+                onAdd={onAdd}
+              />
             ) : (
-              <Row className="item-detail__content--btn">
-                <Button>
-                  <Link to={`/cart`}>Ver carrito</Link>
-                </Button>
-              </Row>
+              <div className="item-detail__count">
+                <Row>
+                  <Col>Articulos agregados al carrito {count}</Col>
+                </Row>
+                <Row className="item-detail__content--btn">
+                  <Button>
+                    <Link to={`/cart`}>Ver carrito</Link>
+                  </Button>
+                </Row>
+              </div>
             )}
           </Row>
         </Row>

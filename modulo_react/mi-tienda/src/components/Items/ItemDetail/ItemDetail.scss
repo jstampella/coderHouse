@@ -18,6 +18,13 @@
     flex-flow: column !important;
     border: 1px dashed $menu-color;
   }
+  &__count {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-top: 1px solid;
+  }
   &__content {
     width: 100%;
     border: 1px dashed;
@@ -53,6 +60,7 @@
       @supports (object-fit: cover) {
         img {
           width: 100%;
+          height: 100%;
           object-fit: cover;
           object-position: center center;
         }

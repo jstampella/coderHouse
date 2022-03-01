@@ -7,10 +7,10 @@ import About from "./components/About";
 import NotFound from "./components/NotFound";
 import ItemList from "./components/Items/ItemList/ItemList";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Col, Row } from "antd";
+import { Col } from "antd";
 import CartContextProvider from "./components/CartContext";
 import "./App.scss";
-import "antd/dist/antd.css";
+//import "antd/dist/antd.css";
 
 function App() {
   return (

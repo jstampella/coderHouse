@@ -4,8 +4,8 @@ import { Row } from "antd";
 
 import "./ItemCount.scss";
 
-export default function ItemCount({ id, min, max, onAdd }) {
-  const [counter, setCounter] = useState(min);
+export default function ItemCount({ id, min, max, init, onAdd }) {
+  const [counter, setCounter] = useState(init === 0 ? 1 : init);
   const incrementCounter = () => {
     if (counter < max) setCounter(counter + 1);
   };

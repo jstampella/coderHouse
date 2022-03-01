@@ -40,6 +40,11 @@ const CartContextProvider = ({ children }) => {
     }
   };
 
+  const getProduct = (id) => {
+    let found = cartList.find((product) => product.id === id);
+    return found;
+  };
+
   const removeAll = () => {
     setCartList([]);
   };
@@ -71,6 +76,7 @@ const CartContextProvider = ({ children }) => {
         getCount,
         removeAll,
         getTotal,
+        getProduct,
       }}
     >
       {children}
